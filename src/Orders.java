@@ -17,13 +17,9 @@ public class Orders {
   double Total_Price;
   String status;
   String orderDetail;
-  Pizza pizza;
 
   int id;
   String name;
-
-
-
 
 
   public Orders(int order_ID, String customer_Name, String contact_Number, Time order_Time, Time complete_Time, double total_Price, String status, String orderDetail) {
@@ -38,26 +34,25 @@ public class Orders {
   }
 
 
-
-  public void splitOrder(String orderDetail)
-  {
-    ingredList = new ArrayList<>();
-    String[] parts  = orderDetail.split(" ");
-    for (int i = 0; i < parts.length; i++) {
-      ingredList.add(parts[i]);
-    }
-  }
-
-  public void readIngredients()
-  {
-    String sql = ("Select * from " + "ingredients" + " ;" );
-    ResultSet rs = st.executeQuery(sql);
-    while(rs.next())
-    {
-      id = rs.getInt("id");
-
-    }
-  }
+//  public void splitOrder(String orderDetail)
+//  {
+//    ingredList = new ArrayList<>();
+//    String[] parts  = orderDetail.split(" ");
+//    for (int i = 0; i < parts.length; i++) {
+//      ingredList.add(parts[i]);
+//    }
+//  }
+//
+//  public void readIngredients()
+//  {
+//    String sql = ("Select * from " + "ingredients" + " ;" );
+//    ResultSet rs = st.executeQuery(sql);
+//    while(rs.next())
+//    {
+//      id = rs.getInt("id");
+//
+//    }
+//  }
 
 
 }
