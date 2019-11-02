@@ -81,51 +81,77 @@ public class DataHandler {
   }
 
   //Including a method to update the status from "new" to "cooking" and a method to update the ingredients storage on the table "ingredients"
-  public boolean confirmOrder(int order_ID) throws SQLException {
+  public void confirmOrder(int order_ID) throws SQLException {
     //Execute SQL to update the order status in the DB
+    String orderToConfirm = findOrder(order_ID);
+    ArrayList<String> temp = splitOrder(orderToConfirm);
+
     for(Orders order : totalOrdersList)
     {
       if(order.getOrder_ID() == order_ID && order.getStatus().equalsIgnoreCase("new"))
       {
         String orderSQL = "UPDATE orders set status = " + "'cooking'" + " where order_ID = " + order_ID;
         stm.execute(orderSQL);
-        break;
+
+        try {
+          for(String ingred:temp)
+          {
+            String ingredSQL = null;
+            for(Ingredients ingredients : ingredientsList)
+            {
+              if(ingredients.getName().equals(ingred))
+              {
+                if(ingredients.getAmount()>0)
+                {
+                  ingredSQL = "UPDATE ingredients SET amount = amount - 1 Where name = " + "'" + ingred + "'";
+                  break;
+                }else {
+                  System.out.println("Not enough" + ingredients.getName() +" storage");
+                }
+              }
+            }
+
+            stm.execute(ingredSQL);
+          }
+          break;
+        }catch(SQLException e)
+        {
+          e.printStackTrace();
+          break;
+        }
+
+//        break;
       }
     }
 
-    //Execute SQL to update the ingredients storage in the DB
-    String orderToConfirm = findOrder(order_ID);
-    ArrayList<String> temp = splitOrder(orderToConfirm);
-    System.out.println("ingredientsDetail :" + temp);
-
-    try {
-        for(String ingred:temp)
-        {
-          int num = 0;
-          for(Ingredients ingredients : ingredientsList)
-          {
-            if(ingredients.getName().equals(ingred))
-            {
-              if(ingredients.getAmount()>0)
-              {
-                num = ingredients.getAmount() - 1;
-                break;
-              }else {
-                System.out.println("Not enough" + ingredients.getName() +" storage");
-              }
-            }
-          }
-          System.out.println("ingred :" + ingred);
-          String ingredSQL = "UPDATE ingredients SET amount = " + num + " Where name = " + "'" + ingred + "'";
-
-          stm.execute(ingredSQL);
-        }
-      return true;
-    }catch(SQLException e)
-    {
-      e.printStackTrace();
-      return false;
-    }
+//    //Execute SQL to update the ingredients storage in the DB
+//
+//    try {
+//        for(String ingred:temp)
+//        {
+//          String ingredSQL = null;
+//          for(Ingredients ingredients : ingredientsList)
+//          {
+//            if(ingredients.getName().equals(ingred))
+//            {
+//              if(ingredients.getAmount()>0)
+//              {
+//                ingredSQL = "UPDATE ingredients SET amount = amount - 1 Where name = " + "'" + ingred + "'";
+//                break;
+//              }else {
+//                System.out.println("Not enough" + ingredients.getName() +" storage");
+//              }
+//            }
+//          }
+//
+//          stm.execute(ingredSQL);
+//        }
+//      return true;
+//    }catch(SQLException e)
+//    {
+//      e.printStackTrace();
+//      return false;
+//    }
   }
 
 
@@ -161,8 +187,7 @@ public class DataHandler {
           {
             if(ingredients.getName().equals(ingred))
             {
-              int num = ingredients.getAmount() +1;
-              String ingredSQL = "UPDATE ingredients SET amount = " + num + " Where name = " + "'" + ingred + "'";
+              String ingredSQL = "UPDATE ingredients SET amount = amount + 1  Where name = " + "'" + ingred + "'";
               stm.execute(ingredSQL);
             }
           }

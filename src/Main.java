@@ -17,14 +17,14 @@ public class Main {
 
 //    System.out.println("after");
 
-//    dh.confirmOrder(1);
+    dh.confirmOrder(1);
 //    dh.confirmOrder(2);
 //    dh.completeOrder(1);
 
 //    dh.printOutOrders();
-    dh.cancelOrder(3);
+//    dh.cancelOrder(1);
 
-    dh.updateIngred("ham",1);
+//    dh.updateIngred("ham",1);
 
 
 
