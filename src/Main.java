@@ -1,3 +1,5 @@
+import java.sql.SQLException;
+
 /**
  * @program PizzaProject
  * @description:
@@ -6,9 +8,26 @@
  */
 
 public class Main {
-  public static void main(String[] args) {
+  public static void main(String[] args) throws SQLException {
 
-    new DBconnection();
+//    DBconnection DBconn = new DBconnection();
+
+    DataHandler dh = new DataHandler();
+//    dh.readOrder(DBconn.getStmt());
+
+    System.out.println("Before");
+//    dh.printOutOrders();
+//    dh.printOutIngredients();
+
+//    System.out.println("after");
+
+//    dh.confirmOrder(1);
+//    dh.confirmOrder(2);
+//    dh.completeOrder(1);
+
+//    dh.printOutOrders();
+    dh.cancelOrder(3);
+
 
 
   }

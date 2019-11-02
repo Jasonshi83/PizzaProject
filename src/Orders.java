@@ -33,27 +33,60 @@ public class Orders {
     this.orderDetail = orderDetail;
   }
 
+  public int getOrder_ID() {
+    return Order_ID;
+  }
 
-//  public void splitOrder(String orderDetail)
-//  {
-//    ingredList = new ArrayList<>();
-//    String[] parts  = orderDetail.split(" ");
-//    for (int i = 0; i < parts.length; i++) {
-//      ingredList.add(parts[i]);
-//    }
-//  }
-//
-//  public void readIngredients()
-//  {
-//    String sql = ("Select * from " + "ingredients" + " ;" );
-//    ResultSet rs = st.executeQuery(sql);
-//    while(rs.next())
-//    {
-//      id = rs.getInt("id");
-//
-//    }
-//  }
+  public String getCustomer_Name() {
+    return Customer_Name;
+  }
 
+  public String getContact_Number() {
+    return Contact_Number;
+  }
 
+  public Time getOrder_Time() {
+    return Order_Time;
+  }
+
+  public Time getComplete_Time() {
+    return Complete_Time;
+  }
+
+  public double getTotal_Price() {
+    return Total_Price;
+  }
+
+  public String getStatus() {
+    return status;
+  }
+
+  public String getOrderDetail() {
+    return orderDetail;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public String toString() {
+    return "Orders{" +
+            "Order_ID=" + Order_ID +
+            ", Customer_Name='" + Customer_Name + '\'' +
+            ", Contact_Number='" + Contact_Number + '\'' +
+            ", Order_Time=" + Order_Time +
+            ", Complete_Time=" + Complete_Time +
+            ", Total_Price=" + Total_Price +
+            ", status='" + status + '\'' +
+            ", orderDetail='" + orderDetail + '\'' +
+            ", id=" + id +
+            ", name='" + name + '\'' +
+            '}';
+  }
 }
     

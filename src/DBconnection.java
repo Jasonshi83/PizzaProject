@@ -33,7 +33,6 @@ public class DBconnection {
   public Boolean dbConnect(String JDBC_DRIVER, String DB_RUL, String USER, String PASS) {
     try {
       //Register JDBC driver
-      System.out.println("Test");
       Class.forName(JDBC_DRIVER);
 
 
