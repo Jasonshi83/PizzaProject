@@ -57,7 +57,7 @@ public class DataHandler {
       Complete_Time = rs.getTime("Complete_Time");
       Total_Price = rs.getDouble("Total_Price");
       status = rs.getString("status");
-      orderDetail = rs.getString("orderDetail");
+      orderDetail = rs.getString("Order_Details");
 
       totalOrdersList.add(new Orders(Order_ID, Customer_Name, Contact_Number, Order_Time, Complete_Time, Total_Price, status, orderDetail));
     }
