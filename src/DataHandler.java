@@ -173,6 +173,20 @@ public class DataHandler {
     }
   }
 
+  //Method to update the ingredients to the inventory, need to input the ingredient name and num which you want to add.
+  public void updateIngred(String ingredName, int num) throws SQLException {
+   int currentNum = 0;
+   for(Ingredients ingredient : ingredientsList)
+   {
+     if(ingredient.getName().equalsIgnoreCase(ingredName))
+     {
+       currentNum = ingredient.getAmount();
+     }
+   }
+    String reorderSQL = "UPDATE ingredients SET amount = " + (num+currentNum) + " Where name = " + "'" + ingredName + "'";
+   stm.execute(reorderSQL);
+  }
+
 
   //Method to return new order list
   public ArrayList<Orders> getNewOrderList()
