@@ -9,11 +9,7 @@ import java.sql.SQLException;
 
 public class Main {
   public static void main(String[] args) throws SQLException {
-
-//    DBconnection DBconn = new DBconnection();
-
     DataHandler dh = new DataHandler();
-//    dh.readOrder(DBconn.getStmt());
 
     System.out.println("Before");
 //    dh.printOutOrders();
@@ -27,6 +23,8 @@ public class Main {
 
 //    dh.printOutOrders();
     dh.cancelOrder(3);
+
+
 
 
 

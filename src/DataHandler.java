@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class DataHandler {
 
+  //Field for order
   int Order_ID;
   String Customer_Name;
   String Contact_Number;
@@ -19,25 +20,22 @@ public class DataHandler {
   String status;
   String orderDetail;
 
+  //Field for ingredients
   int ingreID;
   String ingreName;
   int ingreNum;
   double ingrePrice;
 
-
+  //ArrayList for total order list and ingredients
   ArrayList<Orders> totalOrdersList = new ArrayList<>();
   ArrayList<Ingredients> ingredientsList =new ArrayList<>();
 
+  //For connection to Database
   DBconnection dBconnection;
   Statement stm;
 
 
-//  ArrayList<Orders> cookingOrdersList;
-//  ArrayList<Orders> newOrdersList;
-//  ArrayList<Orders> completedOrdersList;
-//  ArrayList<Orders> cancelledOrdersList;
-
-
+  //Run this constructor to connect to DB
   public DataHandler() throws SQLException {
     dBconnection = new DBconnection();
     stm = dBconnection.getStmt();
@@ -46,7 +44,8 @@ public class DataHandler {
 
   }
 
-  public void readOrder() throws SQLException {
+  //Method to read order information and save oders object to arrayList totalOrderList;
+  public ArrayList<Orders> readOrder() throws SQLException {
     String sql = ("Select * from " + "Orders" + " ;");
     ResultSet rs = stm.executeQuery(sql);
 
@@ -59,34 +58,14 @@ public class DataHandler {
       Total_Price = rs.getDouble("Total_Price");
       status = rs.getString("status");
       orderDetail = rs.getString("orderDetail");
-//      System.out.println("Test1");
-//      System.out.println(Order_ID);
-//      System.out.println(Customer_Name);
-//      System.out.println(Contact_Number);
-//      System.out.println(Order_Time);
-//      System.out.println(Complete_Time);
-//      System.out.println(Total_Price);
-//      System.out.println(status);
-//      System.out.println(orderDetail);
+
       totalOrdersList.add(new Orders(Order_ID, Customer_Name, Contact_Number, Order_Time, Complete_Time, Total_Price, status, orderDetail));
-//      System.out.println("Test2");
-
-
-
-//      if (status.equals("new")) {
-//        newOrdersList.add(new Orders(Order_ID, Customer_Name, Contact_Number, Order_Time, Complete_Time, Total_Price, status, orderDetail));
-//      } else if (status.equals("cookingOrdersList")) {
-//        cookingOrdersList.add(new Orders(Order_ID, Customer_Name, Contact_Number, Order_Time, Complete_Time, Total_Price, status, orderDetail));
-//      } else if (status.equals("completed")) {
-//        completedOrdersList.add(new Orders(Order_ID, Customer_Name, Contact_Number, Order_Time, Complete_Time, Total_Price, status, orderDetail));
-//      } else if (status.equals("cancelled")) {
-//        cancelledOrdersList.add(new Orders(Order_ID, Customer_Name, Contact_Number, Order_Time, Complete_Time, Total_Price, status, orderDetail));
-//      }
     }
-    System.out.println(totalOrdersList.size());
+    return totalOrdersList;
   }
 
 
+  //Method to read ingredients information and save to arrayList ingredientsList
   public ArrayList<Ingredients> readIngredients() throws SQLException {
     String sql = ("Select * from " + "ingredients" + " ;");
     ResultSet rs = stm.executeQuery(sql);
@@ -99,7 +78,6 @@ public class DataHandler {
       ingredientsList.add(new Ingredients(ingreID, ingreName, ingreNum, ingrePrice));
     }
     return ingredientsList;
-
   }
 
   //Including a method to update the status from "new" to "cooking" and a method to update the ingredients storage on the table "ingredients"
@@ -150,6 +128,8 @@ public class DataHandler {
     }
   }
 
+
+  //Method to change the status of "new" order to status "cooking"
   public void completeOrder(int order_ID) throws SQLException {
     for(Orders order : totalOrdersList)
     {
@@ -163,6 +143,7 @@ public class DataHandler {
 
   }
 
+  //Method to cancel the order, and add the ingredients back to ingredients inventory
   public void cancelOrder(int order_ID) throws SQLException {
     for(Orders order : totalOrdersList)
     {
@@ -187,32 +168,62 @@ public class DataHandler {
           }
 
         }
-
-
-
         break;
       }
-
-
-
-
-
     }
-
-
-
-
-
-
-
   }
 
 
+  //Method to return new order list
+  public ArrayList<Orders> getNewOrderList()
+  {
+    ArrayList<Orders> newOrderList = new ArrayList<>();
+    for(Orders order : totalOrdersList)
+    {
+      if(order.getStatus().equalsIgnoreCase("new"))
+        newOrderList.add(order);
+    }
+    return newOrderList;
+  }
 
 
+  //Method to return cooking order list
+  public ArrayList<Orders> getCookingOrderList()
+  {
+    ArrayList<Orders> cookingOrderList = new ArrayList<>();
+    for(Orders order : totalOrdersList)
+    {
+      if(order.getStatus().equalsIgnoreCase("cooking"))
+        cookingOrderList.add(order);
+    }
+    return cookingOrderList;
+  }
 
+  //Method to return completed order list
+  public ArrayList<Orders> getCompletedOrderList()
+  {
+    ArrayList<Orders> completedOrderList = new ArrayList<>();
+    for(Orders order : totalOrdersList)
+    {
+      if(order.getStatus().equalsIgnoreCase("cooking"))
+        completedOrderList.add(order);
+    }
+    return completedOrderList;
+  }
 
+  //Method to return cancelled order list
+  public ArrayList<Orders> getCancelledOrderList()
+  {
+    ArrayList<Orders> cancelledOrderList = new ArrayList<>();
+    for(Orders order : totalOrdersList)
+    {
+      if(order.getStatus().equalsIgnoreCase("cooking"))
+        cancelledOrderList.add(order);
+    }
+    return cancelledOrderList;
+  }
 
+  //Method to splite order detail into arrayList.
     public ArrayList<String> splitOrder(String orderDetail)
   {
     ArrayList<String> ingredList = new ArrayList<>();
