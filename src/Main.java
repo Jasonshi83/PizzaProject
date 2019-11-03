@@ -24,7 +24,7 @@ public class Main {
 //    dh.printOutOrders();
 //    dh.cancelOrder(1);
 
-//    dh.updateIngred("ham",1);
+    dh.updateIngred("ham",20);
 
 
 

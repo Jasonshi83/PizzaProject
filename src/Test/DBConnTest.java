@@ -8,9 +8,7 @@ package Test;
  */
 
 public class DBConnTest {
-  public static void main(String[] args) {
+//  DBconnection dc = new DBconnection();
 
-
-  }
 }
     
