@@ -86,7 +86,11 @@ public class DataHandler {
   public void confirmOrder(int order_ID) throws SQLException {
     //Execute SQL to update the order status in the DB
     String orderToConfirm = findOrder(order_ID);
-    ArrayList<String> temp = splitOrder(orderToConfirm);
+    System.out.println(orderToConfirm);
+    String orderdetail = orderDetailProcess(orderToConfirm);
+    System.out.println(orderdetail);
+    ArrayList<String> temp = splitOrder(orderdetail);
+    System.out.println(temp);
 
     for(Orders order : totalOrdersList)
     {
@@ -271,6 +275,21 @@ public class DataHandler {
       ingredList.add(parts[i]);
     }
     return ingredList;
+  }
+
+  public String orderDetailProcess(String string) {
+    String forCounter = ""; //Cheese Ham Pineapple Beef BBQ Onion
+    string = string.replace(':', ',');
+    String[] pizzas = string.split("\\.");
+    for (String s : pizzas) {
+      s.trim();
+      String[] ingrs = s.split(",");
+      String type = ingrs[0].trim();
+      for (int i = 1; i < ingrs.length; i++)
+        forCounter = forCounter + " " + ingrs[i].trim();
+    }
+    System.out.println(forCounter.trim());
+    return forCounter.trim();
   }
 
   //method to find the orderDetail if the order_ID match with order ID in the total order list
