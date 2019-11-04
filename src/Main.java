@@ -1,4 +1,7 @@
 import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * @program PizzaProject
@@ -18,13 +21,14 @@ public class Main {
 //    System.out.println("after");
 
 //    dh.confirmOrder(1);
-//    dh.confirmOrder(2);
+    dh.confirmOrder(7);
 //    dh.completeOrder(1);
+
 
 //    dh.printOutOrders();
 //    dh.cancelOrder(1);
 
-    dh.updateIngred("ham",20);
+//    dh.updateIngred("ham",20);
 
 
 

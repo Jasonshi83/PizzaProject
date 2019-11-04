@@ -1,4 +1,6 @@
 import java.sql.*;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 /**
@@ -104,6 +106,7 @@ public class DataHandler {
                 if(ingredients.getAmount()>0)
                 {
                   ingredSQL = "UPDATE ingredients SET amount = amount - 1 Where name = " + "'" + ingred + "'";
+                  stm.execute(ingredSQL);
                   break;
                 }else {
                   System.out.println("Not enough" + ingredients.getName() +" storage");
@@ -111,7 +114,7 @@ public class DataHandler {
               }
             }
 
-            stm.execute(ingredSQL);
+//            stm.execute(ingredSQL);
           }
           break;
         }catch(SQLException e)
@@ -163,6 +166,12 @@ public class DataHandler {
       {
         String orderSQL = "UPDATE orders set status = " + "'completed'" + " where order_ID = " + order_ID;
         stm.execute(orderSQL);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime time = LocalTime.now();
+        String completeTime = time.format(formatter);
+        System.out.println(completeTime);
+        String completeTimeSQL = "Update orders set Complete_Time = '" + completeTime + "' where order_ID = " +  order_ID;
+        stm.execute(completeTimeSQL);
         break;
       }
     }
@@ -191,7 +200,6 @@ public class DataHandler {
               stm.execute(ingredSQL);
             }
           }
-
         }
         break;
       }
