@@ -8,58 +8,58 @@ import com.sun.xml.internal.bind.v2.model.core.ID;
  */
 
 public class Ingredients {
-  int id;
-  String name;
-  int amount;
-  double price;
+    int id;
+    String name;
+    int amount;
+    double price;
 
-  public Ingredients(int id, String name, int amount, double price) {
-    this.id = id;
-    this.name = name;
-    this.amount = amount;
-    this.price = price;
-  }
+    public Ingredients(int id, String name, int amount, double price) {
+        this.id = id;
+        this.name = name;
+        this.amount = amount;
+        this.price = price;
+    }
 
-  public int getId() {
-    return id;
-  }
+    public int getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public int getAmount() {
-    return amount;
-  }
+    public int getAmount() {
+        return amount;
+    }
 
-  public void setAmount(int amount) {
-    this.amount = amount;
-  }
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
-  public double getPrice() {
-    return price;
-  }
+    public double getPrice() {
+        return price;
+    }
 
-  public void setPrice(double price) {
-    this.price = price;
-  }
+    public void setPrice(double price) {
+        this.price = price;
+    }
 
-  @Override
-  public String toString() {
-    return "Ingredients{" +
-            "id=" + id +
-            ", name='" + name + '\'' +
-            ", amount=" + amount +
-            ", price=" + price +
-            '}';
-  }
+    @Override
+    public String toString() {
+        return "Ingredients{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", amount=" + amount +
+                ", price=" + price +
+                '}';
+    }
 }
     

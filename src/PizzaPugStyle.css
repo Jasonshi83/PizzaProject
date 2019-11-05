@@ -1,0 +1,50 @@
+/* 
+    Document   : Pizza Pug Stylesheet
+*/
+
+.root{
+    -fx-font-size: 12pt;
+    -fx-font-family: "Calibri";
+    -fx-base: #faeb63;
+    //-fx-background: rgb(225, 228, 203);
+}
+
+.button{
+    -fx-font-size: 9pt;
+    -fx-text-fill: rgb(29, 28, 28);
+    -fx-background-color: linear-gradient(#faeb63, rgb(250, 243, 160));
+    -fx-border-color: rgb(243, 152, 71);
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+}
+
+.borders {
+    -fx-border-color: rgb(103, 100, 78);
+    -fx-border-style: dotted;
+    -fx-border-width: 1.5;
+    -fx-border-insets: -5;
+}
+
+#leftMenu {
+    -fx-background-color: linear-gradient(to right, #ffae00, #ffdf99)
+}
+
+#centerContent{
+    -fx-background-color: #ffdf99;
+}
+
+#topMenu {
+    -fx-background-color: linear-gradient(to right, #ffae00, #ffdf99,#ffdf99,#ffdf99,#ffdf99, #ffb18d);
+}
+
+#topTitle {
+    //-fx-font-family:'Ink Free';
+    //-fx-font-weight: bold;
+    -fx-font-size: 56;
+    -fx-fill: linear-gradient(to bottom right,#faeb63,#ffb18d);
+    -fx-stroke: #e6844c; -fx-stroke-width: 1;;
+}
+
+#rightView{
+    -fx-background-color: linear-gradient(to left, #ffb18d, #ffdf99)
+}
